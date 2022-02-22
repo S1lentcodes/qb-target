@@ -77,7 +77,7 @@ Config.TargetModels = {
 				{
 						type = "client",
 						event = "qb-shops:client:supermarkets",
-						icon = "fa-cart-shopping",
+						icon = "fa-solid fa-cart-shopping",
 						label = "24/7 Shop",
 				},
 		},
