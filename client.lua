@@ -231,68 +231,11 @@ local function EnableTarget()
 						CheckEntity(hit, data, entity, distance)
 					end
 
-				-- Vehicle bones
+				-- Specific Vehicle targets
 				elseif entityType == 2 then
-					local closestBone, closestPos, closestBoneName = CheckBones(coords, entity, Bones.Vehicle)
-					local datatable = Bones.Options[closestBoneName]
-					if datatable and next(datatable) then
-						if closestBone then
-							table_wipe(sendDistance)
-							table_wipe(nuiData)
-							local slot = 0
-							for o, data in pairs(datatable) do
-								if CheckOptions(data, entity, #(coords - closestPos)) then
-									slot += 1
-									sendData[slot] = data
-									sendData[slot].entity = entity
-									nuiData[slot] = {
-										icon = data.icon,
-										label = data.label
-									}
-									sendDistance[data.distance] = true
-								else sendDistance[data.distance] = false end
-							end
-							if next(nuiData) then
-								success = true
-								SendNUIMessage({response = "foundTarget", data = sendData[slot].targeticon})
-								DrawOutlineEntity(entity, true)
-								while targetActive and success do
-									local _, _, dist, entity2 = RaycastCamera(hit, GetEntityCoords(playerPed))
-									if entity == entity2 then
-										local closestBone2 = CheckBones(coords, entity, Bones.Vehicle)
-										if closestBone ~= closestBone2 then
-											LeftTarget()
-											DrawOutlineEntity(entity, false)
-											break
-										elseif not hasFocus and (IsControlPressed(0, Config.MenuControlKey) or IsDisabledControlPressed(0, Config.MenuControlKey)) then
-											EnableNUI(nuiData)
-											DrawOutlineEntity(entity, false)
-										else
-											for k, v in pairs(sendDistance) do
-												if v and dist > k then
-													LeftTarget()
-													DrawOutlineEntity(entity, false)
-													break
-												end
-											end
-										end
-									else
-										LeftTarget()
-										DrawOutlineEntity(entity, false)
-										break
-									end
-									Wait(0)
-								end
-								LeftTarget()
-								DrawOutlineEntity(entity, false)
-							end
-						end
-					else
-						-- Specific Vehicle targets
-						local data = Models[GetEntityModel(entity)]
-						if data then
-							CheckEntity(hit, data, entity, distance)
-						end
+					local data = Models[GetEntityModel(entity)]
+					if data then
+						CheckEntity(hit, data, entity, distance)
 					end
 
 				-- Entity targets
