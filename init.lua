@@ -69,7 +69,61 @@ Config.TargetEntities = {
 }
 
 Config.TargetModels = {
-
+	["24/7shops"] = {
+		models = {
+				"mp_m_shopkeep_01",
+		},
+		options = {
+				{
+						type = "client",
+						event = "qb-shops:client:supermarkets",
+						icon = "fa-cart-shopping",
+						label = "24/7 Shop",
+				},
+		},
+		distance = 2.5,
+	},
+	["AMMUNATION"] = {
+		models = {
+				"mp_m_weapexp_01",
+		},
+		options = {
+				{
+						type = "client",
+						event = "qb-shops:client:ammunation",
+						icon = "fa-solid fa-gun",
+						label = "AMMUNATION",
+				},
+		},
+		distance = 2.5,
+	},
+	["ATM"] = {
+		models = {"prop_atm_01", "prop_atm_02", "prop_atm_03", "prop_fleeca_atm"},
+		options = {
+							{
+				type = "command",
+				event = "atm",
+				parameters = {},
+				icon = "fab fa-cc-visa",
+				label = "ATM"
+			},
+		},
+		distance = 3.0
+	},
+	["robsliquor"] = {
+		models = {
+				"cs_nervousron",
+		},
+		options = {
+				{
+						type = "client",
+						event = "qb-shops:client:robsliquor",
+						icon = "fas fa-beer",
+						label = "Robs Liquor",
+				},
+		},
+		distance = 2.5,
+	},
 }
 
 Config.GlobalPedOptions = {
